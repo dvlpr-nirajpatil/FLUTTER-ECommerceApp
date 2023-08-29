@@ -1,6 +1,15 @@
+import 'package:e_commerce_app/consts/consts.dart';
+import 'package:e_commerce_app/views/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+import 'firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MainApp());
 }
 
@@ -9,12 +18,18 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        scaffoldBackgroundColor: Colors.transparent,
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.transparent,
+          iconTheme: IconThemeData(color: darkFontGrey),
+          elevation: 0,
         ),
+        fontFamily: regular,
       ),
+      home: SplashScreen(),
     );
   }
 }
