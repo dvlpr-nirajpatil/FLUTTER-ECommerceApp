@@ -45,4 +45,8 @@ class AuthController extends GetxController {
       "id": user!.uid
     });
   }
+
+  signInWithGoogle() async {
+    await auth.signInWithPopup(GoogleAuthProvider());
+  }
 }
